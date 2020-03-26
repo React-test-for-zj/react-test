@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 export default class index extends Component {
   constructor() {
@@ -7,11 +7,13 @@ export default class index extends Component {
       name: '',
       id: ''
     }
+    this.inputDom = createRef()
+
   }
 
   handleChange = (e) => { // 把 input 的 value 存入 state
-    console.log(e)
-    console.log(e.target)
+    // console.log(e)
+    // console.log(e.target)
     this.setState({
       name: e.currentTarget.value
     })
@@ -24,6 +26,8 @@ export default class index extends Component {
       })
       this.setState({
         name: ''
+      }, () => { // 第二个参数这里可以获取最新的 state 的值
+        this.inputDom.current.focus()
       })
     }
   }
@@ -38,7 +42,7 @@ export default class index extends Component {
   render() {
     return (
       <div>
-        <input type='text' value={this.state.name} onChange={this.handleChange} onKeyDown={this.handleKeyCode} ></input>
+        <input type='text' value={this.state.name} onChange={this.handleChange} onKeyDown={this.handleKeyCode} ref={this.refs.inputDom}></input>
         <button onClick={this.addSub}>提交</button>
       </div>
     )

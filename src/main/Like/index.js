@@ -22,6 +22,7 @@ export default class index extends Component {
   // }
   isliked = () => {
     this.setState(prev => {
+      console.log(prev)
       return {
         islike: !prev.islike
       }
