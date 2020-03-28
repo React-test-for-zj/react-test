@@ -5,7 +5,8 @@ export default class index extends Component {
     super()
     this.state = {
       name: '',
-      id: ''
+      id: '',
+      done: false
     }
     this.inputDom = createRef()
 
@@ -22,7 +23,8 @@ export default class index extends Component {
     if (this.state.name) {
       this.props.addName({
         name: this.state.name,
-        id: Math.random()
+        id: Math.random(),
+        done: this.state.done
       })
       this.setState({
         name: ''
@@ -42,7 +44,7 @@ export default class index extends Component {
   render() {
     return (
       <div>
-        <input type='text' value={this.state.name} onChange={this.handleChange} onKeyDown={this.handleKeyCode} ref={this.refs.inputDom}></input>
+        <input type='text' value={this.state.name} onChange={this.handleChange} onKeyDown={this.handleKeyCode} ref={this.inputDom} />
         <button onClick={this.addSub}>提交</button>
       </div>
     )
